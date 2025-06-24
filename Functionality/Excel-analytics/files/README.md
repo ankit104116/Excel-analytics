@@ -1,337 +1,326 @@
-# Authentication Platform
+# Excel Analytics Platform
 
-A comprehensive authentication system built with React frontend and Node.js backend, featuring user registration, login, role-based access control, and secure JWT token management.
+A comprehensive web-based platform for Excel file analysis, data visualization, and user management with role-based access control.
 
-## 🔐 Authentication Features
+## 🚀 Overview
 
-### Core Authentication
-- **User Registration**: Secure signup with email validation and password hashing
-- **User Login**: JWT-based authentication with token storage
-- **Password Security**: Bcrypt hashing with salt rounds (12)
-- **Email Validation**: Built-in email format validation using validator.js
-- **Session Management**: Persistent login state with localStorage
+The Excel Analytics Platform is a full-stack application that allows users to upload Excel files, analyze data, create visualizations, and manage user accounts. The platform features a robust authentication system, admin dashboard, and real-time analytics capabilities.
 
-### Role-Based Access Control (RBAC)
-- **User Roles**: Support for 'user' and 'admin' roles
-- **Protected Routes**: Middleware-based route protection
-- **Role Restrictions**: Granular permission control for different user types
-- **Admin-Only Routes**: Specialized admin dashboard and functionality
+## 📋 Table of Contents
 
-### Security Features
-- **JWT Tokens**: Secure token-based authentication
-- **Password Hashing**: Bcrypt encryption for password storage
-- **Input Validation**: Comprehensive validation for all user inputs
-- **CORS Protection**: Configured CORS for secure cross-origin requests
-- **Helmet Security**: HTTP headers security middleware
-- **Token Expiration**: Configurable token expiration (default: 1 day)
+- [Features](#-features)
+- [Technology Stack](#-technology-stack)
+- [Architecture](#-architecture)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [API Documentation](#-api-documentation)
+- [Admin Features](#-admin-features)
+- [Security Features](#-security-features)
+- [File Structure](#-file-structure)
 
-## 🏗️ Project Architecture
+## ✨ Features
 
-### Frontend (React)
-```
-client/
-├── src/
-│   ├── components/          # Reusable UI components
-│   │   └── ProtectedRoute.js # Route protection component
-│   ├── contexts/            # React Context providers
-│   │   └── AuthContext.js   # Authentication state management
-│   ├── pages/               # Page components
-│   │   ├── Login.js         # User login page
-│   │   ├── Signup.js        # User registration page
-│   │   ├── AdminLogin.js    # Admin-specific login
-│   │   ├── UserDashboard.js # User dashboard
-│   │   ├── AdminDashboard.js # Admin dashboard
-│   │   └── LandingPage.js   # Home page
-│   ├── styles/              # CSS and styling files
-│   ├── App.js               # Main application component
-│   └── index.js             # Application entry point
-├── public/                  # Static assets
-└── package.json             # Frontend dependencies
-```
+### 🔐 Authentication & User Management
+- **User Registration & Login**: Secure user authentication with JWT tokens
+- **Role-Based Access Control**: User and Admin roles with different permissions
+- **Password Security**: Bcrypt hashing for secure password storage
+- **Session Management**: JWT-based session handling with expiration
+- **User Profile Management**: View and update user information
 
-### Backend (Node.js/Express)
-```
-server/
-├── src/
-│   ├── models/              # Database models
-│   │   └── user.model.js    # User schema and methods
-│   ├── middleware/          # Custom middleware
-│   │   └── auth.middleware.js # Authentication middleware
-│   ├── routes/              # API routes
-│   │   └── auth.routes.js   # Authentication endpoints
-│   └── index.js             # Server entry point
-├── .env                     # Environment variables
-└── package.json             # Backend dependencies
-```
+### 📊 Excel File Processing
+- **File Upload**: Drag-and-drop or click-to-upload Excel files (.xls, .xlsx)
+- **Data Parsing**: Automatic conversion of Excel data to JSON format
+- **File Validation**: Type checking and format validation
+- **Data Storage**: Secure storage of parsed data in MongoDB
+- **File History**: Track and manage uploaded files
 
-## 📁 File Explanations
+### 📈 Data Visualization
+- **Chart Generation**: Create various chart types from Excel data
+- **Interactive Charts**: Dynamic chart rendering with Chart.js
+- **Axis Configuration**: Customizable X and Y axis selection
+- **Chart Types**: Support for multiple chart formats
+- **Real-time Updates**: Live chart updates based on data changes
 
-### Frontend Files
+### 🎨 Frontend Features
+- **Responsive Design**: Modern UI with Tailwind CSS
+- **User Dashboard**: Personalized dashboard for regular users
+- **Admin Dashboard**: Comprehensive admin interface
+- **Landing Page**: Professional landing page with feature showcase
+- **Protected Routes**: Role-based route protection
+- **Modern UI/UX**: Clean, intuitive user interface
 
-#### `client/src/App.js`
-- **Purpose**: Main application component with routing configuration
-- **Features**: 
-  - Route definitions for all pages
-  - Protected route implementation
-  - Admin route protection
-  - Navigation structure
+### 🔧 Admin Capabilities
+- **User Management**: View, edit, and delete user accounts
+- **Role Management**: Toggle user roles between User and Admin
+- **System Analytics**: Monitor platform performance and usage
+- **User Activity Tracking**: Track user actions and file uploads
+- **Performance Monitoring**: API response time analytics
+- **User Reports**: Generate reports for individual users
 
-#### `client/src/contexts/AuthContext.js`
-- **Purpose**: Global authentication state management
-- **Features**:
-  - User state management
-  - Login/logout functionality
-  - Token storage and retrieval
-  - Automatic user data fetching
-  - Error handling for auth operations
+### 📈 Analytics & Monitoring
+- **Performance Metrics**: Track API response times
+- **User Statistics**: Monitor user registration and activity
+- **File Analytics**: Track file upload patterns
+- **System Health**: Monitor database connections and server status
+- **Usage Reports**: Generate comprehensive usage reports
 
-#### `client/src/components/ProtectedRoute.js`
-- **Purpose**: Route protection component
-- **Features**:
-  - Checks authentication status
-  - Redirects unauthenticated users
-  - Integrates with AuthContext
+## 🛠 Technology Stack
 
-#### `client/src/pages/`
-- **Login.js**: User login form with validation
-- **Signup.js**: User registration form
-- **AdminLogin.js**: Admin-specific login interface
-- **UserDashboard.js**: Authenticated user dashboard
-- **AdminDashboard.js**: Admin-only dashboard
-- **LandingPage.js**: Public home page
+### Backend
+- **Node.js**: Server-side JavaScript runtime
+- **Express.js**: Web application framework
+- **MongoDB**: NoSQL database with Mongoose ODM
+- **JWT**: JSON Web Tokens for authentication
+- **Multer**: File upload handling
+- **XLSX**: Excel file parsing library
+- **Bcryptjs**: Password hashing
+- **Helmet**: Security middleware
+- **Morgan**: HTTP request logging
+- **CORS**: Cross-origin resource sharing
 
-### Backend Files
-
-#### `server/src/index.js`
-- **Purpose**: Main server entry point
-- **Features**:
-  - Express server setup
-  - MongoDB connection
-  - Middleware configuration
-  - Route registration
-  - Error handling
-
-#### `server/src/models/user.model.js`
-- **Purpose**: User data model and schema
-- **Features**:
-  - Mongoose schema definition
-  - Password hashing middleware
-  - Password comparison method
-  - Email validation
-  - Role-based user structure
-
-#### `server/src/middleware/auth.middleware.js`
-- **Purpose**: Authentication and authorization middleware
-- **Features**:
-  - JWT token verification
-  - User authentication checking
-  - Role-based access control
-  - Protected route middleware
-
-#### `server/src/routes/auth.routes.js`
-- **Purpose**: Authentication API endpoints
-- **Features**:
-  - User registration endpoint
-  - User login endpoint
-  - Current user data endpoint
-  - Admin-only routes
-  - JWT token generation
-
-## 🛠️ Technologies Used
-
-### Frontend Technologies
-- **React 19.1.0**: Modern UI library for building user interfaces
-- **React Router DOM 7.6.2**: Client-side routing
-- **React Context API**: State management for authentication
-- **Tailwind CSS 4.1.8**: Utility-first CSS framework
-- **Chart.js 4.4.9**: Data visualization library
-- **Three.js 0.177.0**: 3D graphics library
-- **Redux Toolkit 2.8.2**: State management (available but not used in auth)
-
-### Backend Technologies
-- **Node.js**: JavaScript runtime environment
-- **Express 4.21.2**: Web application framework
-- **MongoDB**: NoSQL database
-- **Mongoose 7.8.7**: MongoDB object modeling
-- **JWT 9.0.2**: JSON Web Token authentication
-- **Bcryptjs 2.4.3**: Password hashing
-- **Validator 13.15.15**: Input validation
-- **CORS 2.8.5**: Cross-origin resource sharing
-- **Helmet 7.2.0**: Security middleware
-- **Morgan 1.10.0**: HTTP request logger
-- **Dotenv 16.5.0**: Environment variable management
-- **Multer 1.4.5-lts.1**: File upload handling
-- **XLSX 0.18.5**: Excel file processing
+### Frontend
+- **React.js**: Frontend framework
+- **React Router**: Client-side routing
+- **Redux Toolkit**: State management
+- **Chart.js**: Data visualization library
+- **Tailwind CSS**: Utility-first CSS framework
+- **Three.js**: 3D graphics library
+- **File-saver**: File download functionality
+- **HTML2Canvas**: Screenshot capabilities
+- **jsPDF**: PDF generation
 
 ### Development Tools
-- **Nodemon 3.0.1**: Development server with auto-restart
-- **Jest 29.6.4**: Testing framework
-- **React Scripts 5.0.1**: Create React App scripts
-- **PostCSS 8.5.4**: CSS processing
-- **Autoprefixer 10.4.21**: CSS vendor prefixing
+- **Nodemon**: Development server with auto-restart
+- **ESLint**: Code linting
+- **PostCSS**: CSS processing
+- **Autoprefixer**: CSS vendor prefixing
 
-## 🚀 Getting Started
+## 🏗 Architecture
+
+```
+Excel Analytics Platform
+├── Backend (Node.js/Express)
+│   ├── Authentication System
+│   ├── File Processing Engine
+│   ├── Database Models
+│   ├── API Endpoints
+│   └── Admin Services
+├── Frontend (React)
+│   ├── User Interface
+│   ├── State Management
+│   ├── Chart Components
+│   └── Authentication Context
+└── Database (MongoDB)
+    ├── User Collection
+    └── Analysis Collection
+```
+
+## 📦 Installation
 
 ### Prerequisites
-- Node.js (v14 or higher)
+- Node.js (>= 14.0.0)
 - MongoDB (local or cloud instance)
 - npm or yarn package manager
 
-### Installation
+### Quick Start
 
-1. **Clone the repository**:
-```bash
-git clone [repository-url]
-cd Authentication
-```
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd integ/Excel-analytics
+   ```
 
-2. **Install backend dependencies**:
-```bash
-cd server
-npm install
-```
+2. **Install dependencies**
+   ```bash
+   # Install backend dependencies
+   npm install
+   
+   # Install frontend dependencies
+   cd files/client
+   npm install
+   ```
 
-3. **Install frontend dependencies**:
-```bash
-cd ../client
-npm install
-```
+3. **Environment Setup**
+   Create a `.env` file in the root directory:
+   ```env
+   MONGODB_URI=mongodb://localhost:27017/excel-analytics
+   JWT_SECRET=your_jwt_secret_key
+   PORT=5001
+   NODE_ENV=development
+   ```
 
-4. **Set up environment variables**:
-   Create `.env` file in the `server` directory:
-```env
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/authentication
-JWT_SECRET=your_secure_jwt_secret_key_here
-NODE_ENV=development
-```
+4. **Start the platform**
 
-5. **Start the development servers**:
+   **Windows:**
+   ```bash
+   start-platform.bat
+   ```
 
-**Backend (from server directory)**:
-```bash
-npm run dev
-```
+   **Linux/Mac:**
+   ```bash
+   chmod +x start-platform.sh
+   ./start-platform.sh
+   ```
 
-**Frontend (from client directory)**:
-```bash
-npm start
-```
+   **Manual Start:**
+   ```bash
+   # Terminal 1 - Backend
+   node unified-server.js
+   
+   # Terminal 2 - Frontend
+   cd files/client
+   npm start
+   ```
 
-### Application URLs
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:5000
+## 🚀 Usage
 
-## 🔌 API Endpoints
+### For Regular Users
+
+1. **Access the Platform**
+   - Navigate to `http://localhost:3000`
+   - Register a new account or login
+
+2. **Upload Excel Files**
+   - Click "Upload File" in the dashboard
+   - Select an Excel file (.xls or .xlsx)
+   - File will be automatically parsed and stored
+
+3. **Create Visualizations**
+   - Select uploaded data from history
+   - Choose chart type and axis configuration
+   - Generate interactive charts
+
+4. **Manage Data**
+   - View upload history
+   - Access previous analyses
+   - Download generated charts
+
+### For Administrators
+
+1. **Admin Access**
+   - Login with admin credentials
+   - Access admin dashboard at `/admin`
+
+2. **User Management**
+   - View all registered users
+   - Modify user roles
+   - Monitor user activity
+   - Delete user accounts
+
+3. **System Analytics**
+   - Monitor platform performance
+   - View user statistics
+   - Track file upload patterns
+   - Generate system reports
+
+## 📚 API Documentation
 
 ### Authentication Endpoints
-- `POST /api/auth/signup` - Register a new user
-- `POST /api/auth/login` - User login
-- `GET /api/auth/me` - Get current user data (protected)
-- `GET /api/auth/admin-only` - Admin-only route (protected)
 
-### Request/Response Examples
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/signup` | Register new user |
+| POST | `/api/auth/login` | User login |
+| GET | `/api/auth/me` | Get current user info |
+| GET | `/api/auth/admin-only` | Admin-only route test |
 
-#### User Registration
-```json
-POST /api/auth/signup
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "securepassword123",
-  "role": "user"
-}
+### File Processing Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/upload` | Upload Excel file |
+| GET | `/api/history` | Get user's file history |
+| POST | `/api/analysis` | Create data analysis |
+
+### Admin Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/admin/users` | Get all users |
+| PATCH | `/api/admin/user/:id/role` | Update user role |
+| DELETE | `/api/admin/user/:id` | Delete user |
+| GET | `/api/admin/analytics/performance` | Get API performance metrics |
+| GET | `/api/admin/analytics/summary` | Get system summary |
+| GET | `/api/admin/analytics/signups` | Get user signup trends |
+
+## 🔐 Security Features
+
+- **JWT Authentication**: Secure token-based authentication
+- **Password Hashing**: Bcrypt encryption for passwords
+- **Input Validation**: Comprehensive input sanitization
+- **CORS Protection**: Cross-origin request security
+- **Helmet Security**: HTTP header security
+- **Role-Based Access**: Granular permission control
+- **File Type Validation**: Secure file upload restrictions
+
+## 📁 File Structure
+
+```
+integ/Excel-analytics/
+├── unified-server.js          # Main backend server
+├── package.json               # Backend dependencies
+├── start-platform.bat         # Windows startup script
+├── start-platform.sh          # Linux/Mac startup script
+├── uploads/                   # File upload directory
+├── logs/                      # Application logs
+├── files/
+│   └── client/                # React frontend
+│       ├── src/
+│       │   ├── pages/         # Page components
+│       │   ├── components/    # Reusable components
+│       │   ├── contexts/      # React contexts
+│       │   └── styles/        # CSS stylesheets
+│       ├── public/            # Static assets
+│       └── package.json       # Frontend dependencies
+└── README.md                  # Project documentation
 ```
 
-#### User Login
-```json
-POST /api/auth/login
-{
-  "email": "john@example.com",
-  "password": "securepassword123"
-}
-```
+## 🎯 Key Features Summary
 
-#### Protected Route Access
-```json
-GET /api/auth/me
-Headers: {
-  "Authorization": "Bearer <jwt_token>"
-}
-```
+### Core Functionality
+- ✅ Excel file upload and parsing
+- ✅ Data visualization with charts
+- ✅ User authentication and authorization
+- ✅ Role-based access control
+- ✅ File history and management
+- ✅ Admin dashboard and user management
 
-## 🔒 Security Considerations
+### Advanced Features
+- ✅ Real-time performance monitoring
+- ✅ System analytics and reporting
+- ✅ Secure file handling
+- ✅ Responsive design
+- ✅ Cross-platform compatibility
+- ✅ Scalable architecture
 
-### Password Security
-- Passwords are hashed using bcrypt with 12 salt rounds
-- Minimum password length: 8 characters
-- Passwords are never stored in plain text
-
-### JWT Security
-- Tokens expire after 1 day
-- Tokens are stored in localStorage (consider httpOnly cookies for production)
-- JWT secret should be a strong, random string
-
-### Input Validation
-- Email format validation using validator.js
-- Required field validation
-- Role-based access control validation
-
-### CORS Configuration
-- Configured for development (localhost:3000)
-- Should be updated for production deployment
-
-## 🧪 Testing
-
-### Backend Testing
-```bash
-cd server
-npm test
-```
-
-### Frontend Testing
-```bash
-cd client
-npm test
-```
-
-## 📦 Production Deployment
-
-### Environment Variables for Production
-```env
-PORT=5000
-MONGODB_URI=your_production_mongodb_uri
-JWT_SECRET=your_production_jwt_secret
-NODE_ENV=production
-```
-
-### Build Commands
-```bash
-# Frontend build
-cd client
-npm run build
-
-# Backend start
-cd server
-npm start
-```
+### Developer Experience
+- ✅ Comprehensive API documentation
+- ✅ Modular code structure
+- ✅ Error handling and logging
+- ✅ Development and production scripts
+- ✅ Environment configuration
+- ✅ Testing framework ready
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
 
-## 🔗 Related Links
+## 🆘 Support
 
-- [React Documentation](https://reactjs.org/)
-- [Express.js Documentation](https://expressjs.com/)
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [JWT.io](https://jwt.io/)
-- [Bcrypt Documentation](https://github.com/dcodeIO/bcrypt.js/) 
+For support and questions:
+- Check the documentation
+- Review the API endpoints
+- Examine the code structure
+- Contact the development team
+
+---
+
+**Excel Analytics Platform** - Transform your Excel data into powerful insights! 📊✨
