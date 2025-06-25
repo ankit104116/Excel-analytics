@@ -730,14 +730,14 @@ const UserDashboard = () => {
                 }}>
                   <button
                     className="dashboard-button secondary"
-                    style={{ width: '100%', border: 'none', borderRadius: 0, textAlign: 'left', padding: '0.7rem 1rem' }}
+                    style={{ width: '170px', border: 'none', borderRadius: 0, textAlign: 'left', padding: '0.5rem 1rem' }}
                     onClick={() => { downloadChartAsPNG(); setShowDownloadDropdown(false); }}
                   >
                     Download as PNG
                   </button>
                   <button
                     className="dashboard-button secondary"
-                    style={{ width: '100%', border: 'none', borderRadius: 0, textAlign: 'left', padding: '0.7rem 1rem' }}
+                    style={{ width: '170px', border: 'none', borderRadius: 0, textAlign: 'left', padding: '0.5rem 1rem' }}
                     onClick={() => { downloadChartAsPDF(); setShowDownloadDropdown(false); }}
                   >
                     Download as PDF
