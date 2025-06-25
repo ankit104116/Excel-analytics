@@ -461,10 +461,6 @@ canvas::before {
   pointer-events: none;
 }
 
-canvas:hover {
-  transform: translateZ(25px) rotateX(5deg) rotateY(5deg); /* Excel-like rotation */
-}
-
 /* System Info */
 .dashboard-section:last-child .section-title {
   margin-bottom: 1rem;
